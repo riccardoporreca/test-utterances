@@ -2,30 +2,47 @@
 
 name: utterances-vote-init
 
-# Controls when the action will run. Triggers the workflow on push or pull request
-# events but only for the master branch
 on:
-  issues:
-    types: [labeled]
-    
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
-jobs:
-  # This workflow contains a single job called "build"
-  build:
-    # The type of runner that the job will run on
-    runs-on: ubuntu-latest
+  # Trigger the workflow on push but only for the master branch
+  push:
+    branches:
+      - master
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
+jobs:
+  build:
+    runs-on: ubuntu-latest
     steps:
-    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-    - name: Issue number
-      run: echo ${{ github.event.issue.number }} ${{ join( github.event.issue.labels.*.name) }}
-    - name: Initial voting comment
-      if: contains(github.event.issue.labels.*.name, ':+1:')
-      uses: peter-evans/create-or-update-comment@v1
-      with:
-        issue-number: ${{ github.event.issue.number }}
-        body: |
-          Vote for this contribution by giving it a :+1:!
-          _Please avoid using comments or other reactions_
-        reaction-type: '+1'
+      - name: Setup R
+        uses: r-lib/actions/setup-r@master
+      - name: Install required packages
+        run: |
+          pkgs <- "gh"
+          install.packages(pkgs)
+          saveRDS(installed.packages()[, c("Package", "Version"), drop = FALSE], "depends.Rds", version = 2)
+        shell: Rscript {0}
+      - name: Cache R packages
+        uses: actions/cache@v1
+        with:
+          path: ${{ env.R_LIBS_USER }}
+          key: ${{ runner.os }}-r-${{ hashFiles('depends.Rds') }}
+          restore-keys: ${{ runner.os }}-r-
+      - name: Create new issue
+        run: |
+          owner <- "riccardoporreca"
+          repo <- "test-utterances"
+          committed_files <- gh::gh(
+            "/repos/:owner/:repo/commits/:sha",
+            sha = Sys.getenv("GITHUB_SHA"),
+            owner = owner, repo = repo
+          )$files
+          str(committed_files, max.level = 2)
+        shell: Rscript {0}
+      - name: Initial voting comment
+        if: contains(github.event.issue.labels.*.name, ':+1:')
+        uses: peter-evans/create-or-update-comment@v1
+        with:
+          issue-number: ${{ github.event.issue.number }}
+          body: |
+            Vote for this contribution by giving it a :+1:!
+            _Please avoid using comments or other reactions_
+          reaction-type: '+1'
