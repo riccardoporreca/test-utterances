@@ -17,11 +17,10 @@ jobs:
       - name: Install system dependencies
         run: |
           sudo -s eval "apt-get update && apt-get install -y libcurl4-openssl-dev"
-      - name: Install required packages
+      - name: Query dependencies
         run: |
-          pkgs <- "gh"
-          install.packages(pkgs)
-          saveRDS(installed.packages()[, c("Package", "Version"), drop = FALSE], "depends.Rds", version = 2)
+          install.packages("remotes")
+          saveRDS(remotes::package_deps("gh"), "depends.Rds", version = 2)
         shell: Rscript {0}
       - name: Cache R packages
         uses: actions/cache@v1
@@ -29,6 +28,10 @@ jobs:
           path: ${{ env.R_LIBS_USER }}
           key: ${{ runner.os }}-r-${{ hashFiles('depends.Rds') }}
           restore-keys: ${{ runner.os }}-r-
+      - name: Install package dependencies
+        run: |
+          install.packages(readRDS("depends.Rds")$package)
+        shell: Rscript {0}
       - name: Create new issue
         run: |
           owner <- "riccardoporreca"
@@ -45,6 +48,21 @@ jobs:
             })]
           stopifnot(length(new_meta_files) <= 1L)
           str(new_meta_files)
+          new_issue <- {
+            meta <- yaml::yaml.load(rawToChar(curl::curl_fetch_memory(new_meta_file$raw_url)$content))
+            name <- tools::file_path_sans_ext(basename(new_meta_file$filename))
+            title <- sprintf("%s/%s", repo, name)
+            content <- paste0(
+              sprintf("# %s", meta$title), "\n", "\n",
+              sprintf("https://%s.github.io/%s/%s.html", tolower(owner), repo, name)
+            )
+            list(
+              title = title,
+              body = content,
+              labels = list(":+1:")
+            )
+          }
+          str(new_issue)
         shell: Rscript {0}
       - name: Initial voting comment
         if: contains(github.event.issue.labels.*.name, ':+1:')
