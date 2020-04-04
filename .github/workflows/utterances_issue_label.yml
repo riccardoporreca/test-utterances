@@ -33,10 +33,11 @@ jobs:
           remotes::install_cran(readRDS("depends.Rds")$package)
         shell: Rscript {0}
       - name: Create new issue
+        id: create-issue
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          owner <- "riccardoporreca"
+          echo ::set-output name=issue::$(Rscript -r 'owner <- "riccardoporreca"
           repo <- "test-utterances"
           committed_files <- gh::gh(
             "/repos/:owner/:repo/commits/:sha",
@@ -75,7 +76,10 @@ jobs:
               labels = new_issue$labels
             )
             str(created)
-          }
+            created$number
+          } else {
+            -1
+          }')
           
         shell: Rscript {0}
       - name: Initial voting comment
