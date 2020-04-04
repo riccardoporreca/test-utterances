@@ -19,4 +19,4 @@ jobs:
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - name: Issue number
-      run: echo ${{ github.event.issue.number }} ${{ join( array, github.event.issue.labels.*.name) }}
+      run: echo ${{ github.event.issue.number }} ${{ join( github.event.issue.labels.*.name) }}
