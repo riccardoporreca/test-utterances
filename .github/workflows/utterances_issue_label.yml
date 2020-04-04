@@ -37,7 +37,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          echo ::set-output name=issue::$(Rscript -r 'owner <- "riccardoporreca"
+          owner <- "riccardoporreca"
           repo <- "test-utterances"
           committed_files <- gh::gh(
             "/repos/:owner/:repo/commits/:sha",
@@ -76,12 +76,16 @@ jobs:
               labels = new_issue$labels
             )
             str(created)
-            created$number
+            cat(created$number, file = "issue")
           } else {
-            -1
-          }')
+            cat(-1, file = "issue")
+          }
+        shell: Rscript {0}
+      - name: Issue nr
+        id: issue_nr
+        run: echo "##[set-output name=issue;]$(cat issue)"
       - name: Test output
-        run: echo ${{ steps.create_issue.outputs.issue }}
+        run: echo ${{ steps.issue_nr.outputs.issue }}
       - name: Initial voting comment
         if: contains(github.event.issue.labels.*.name, ':+1:')
         uses: peter-evans/create-or-update-comment@v1
