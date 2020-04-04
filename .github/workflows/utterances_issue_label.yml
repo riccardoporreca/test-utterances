@@ -87,7 +87,7 @@ jobs:
       - name: Test output
         run: echo ${{ steps.issue_nr.outputs.issue }}
       - name: Initial voting comment
-        if: ${{ steps.issue_nr.outputs.issue }} > 0
+        if: steps.issue_nr.outputs.issue > 0
         uses: peter-evans/create-or-update-comment@v1
         with:
           issue-number: ${{ steps.issue_nr.outputs.issue }}
