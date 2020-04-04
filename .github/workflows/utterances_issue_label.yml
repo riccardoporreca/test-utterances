@@ -39,6 +39,12 @@ jobs:
             owner = owner, repo = repo
           )$files
           str(committed_files, max.level = 2)
+          new_meta_files <- committed_files[
+            sapply(committed_files, function(file) {
+              file$status == "added" && dirname(file$filename) == "contest/contributions"
+            })]
+          stopifnot(length(new_meta_files) <= 1L)
+          str(new_meta_files)
         shell: Rscript {0}
       - name: Initial voting comment
         if: contains(github.event.issue.labels.*.name, ':+1:')
