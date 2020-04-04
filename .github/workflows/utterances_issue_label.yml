@@ -42,12 +42,12 @@ jobs:
             owner = owner, repo = repo
           )$files
           str(committed_files, max.level = 2)
-          new_meta_files <- committed_files[
+          new_meta_file <- committed_files[
             sapply(committed_files, function(file) {
               file$status == "added" && dirname(file$filename) == "contest/contributions"
             })]
-          stopifnot(length(new_meta_files) <= 1L)
-          str(new_meta_files)
+          stopifnot(length(new_meta_file) <= 1L)
+          str(new_meta_file)
           new_issue <- {
             meta <- yaml::yaml.load(rawToChar(curl::curl_fetch_memory(new_meta_file$raw_url)$content))
             name <- tools::file_path_sans_ext(basename(new_meta_file$filename))
