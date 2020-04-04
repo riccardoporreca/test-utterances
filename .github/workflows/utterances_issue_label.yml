@@ -33,7 +33,7 @@ jobs:
           remotes::install_cran(readRDS("depends.Rds")$package)
         shell: Rscript {0}
       - name: Create new issue
-        id: create-issue
+        id: create_issue
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
@@ -80,8 +80,8 @@ jobs:
           } else {
             -1
           }')
-          
-        shell: Rscript {0}
+      - name: Test output
+        run: echo ${{ steps.build_package.outputs.create_issue }}
       - name: Initial voting comment
         if: contains(github.event.issue.labels.*.name, ':+1:')
         uses: peter-evans/create-or-update-comment@v1
