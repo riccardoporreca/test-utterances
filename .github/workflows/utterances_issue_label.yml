@@ -33,6 +33,8 @@ jobs:
           remotes::install_cran(readRDS("depends.Rds")$package)
         shell: Rscript {0}
       - name: Create new issue
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           owner <- "riccardoporreca"
           repo <- "test-utterances"
