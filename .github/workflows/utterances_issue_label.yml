@@ -81,7 +81,7 @@ jobs:
             -1
           }')
       - name: Test output
-        run: echo ${{ steps.build_package.outputs.create_issue }}
+        run: echo ${{ steps.create_issue.outputs.issue }}
       - name: Initial voting comment
         if: contains(github.event.issue.labels.*.name, ':+1:')
         uses: peter-evans/create-or-update-comment@v1
