@@ -65,6 +65,14 @@ jobs:
               )
             }
             str(new_issue)
+            created <- gh::gh(
+              "POST /repos/:owner/:repo/issues",
+              owner = "riccardoporreca", repo = "test-utterances",
+              title = new_issue$title,
+              body = new_issue$body,
+              labels = new_issue$labels
+            )
+            str(created)
           }
           
         shell: Rscript {0}
