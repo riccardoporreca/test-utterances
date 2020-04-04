@@ -30,7 +30,7 @@ jobs:
           restore-keys: ${{ runner.os }}-r-
       - name: Install package dependencies
         run: |
-          install.packages(readRDS("depends.Rds")$package)
+          remotes::install_cran(readRDS("depends.Rds")$package)
         shell: Rscript {0}
       - name: Create new issue
         run: |
@@ -42,27 +42,31 @@ jobs:
             owner = owner, repo = repo
           )$files
           str(committed_files, max.level = 2)
-          new_meta_file <- committed_files[
+          new_meta_files <- committed_files[
             sapply(committed_files, function(file) {
               file$status == "added" && dirname(file$filename) == "contest/contributions"
             })]
-          stopifnot(length(new_meta_file) <= 1L)
-          str(new_meta_file)
-          new_issue <- {
-            meta <- yaml::yaml.load(rawToChar(curl::curl_fetch_memory(new_meta_file$raw_url)$content))
-            name <- tools::file_path_sans_ext(basename(new_meta_file$filename))
-            title <- sprintf("%s/%s", repo, name)
-            content <- paste0(
-              sprintf("# %s", meta$title), "\n", "\n",
-              sprintf("https://%s.github.io/%s/%s.html", tolower(owner), repo, name)
-            )
-            list(
-              title = title,
-              body = content,
-              labels = list(":+1:")
-            )
+          stopifnot(length(new_meta_files) <= 1L)
+          str(new_meta_files)
+          if (length(new_meta_files) == 1L) {
+            file <- new_meta_files[[1L]]
+            new_issue <- {
+              meta <- yaml::yaml.load(rawToChar(curl::curl_fetch_memory(file$raw_url)$content))
+              name <- tools::file_path_sans_ext(basename(file$filename))
+              title <- sprintf("%s/%s", repo, name)
+              content <- paste0(
+                sprintf("# %s", meta$title), "\n", "\n",
+                sprintf("https://%s.github.io/%s/%s.html", tolower(owner), repo, name)
+              )
+              list(
+                title = title,
+                body = content,
+                labels = list(":+1:")
+              )
+            }
+            str(new_issue)
           }
-          str(new_issue)
+          
         shell: Rscript {0}
       - name: Initial voting comment
         if: contains(github.event.issue.labels.*.name, ':+1:')
