@@ -41,8 +41,8 @@ jobs:
         run: |
           source("_tools/utterances-issues.R")
           create_utterances_issues(
-            meta = rmdgallery::gallery_site_config("contest")$gallery$meta
-            owner = "riccardoporreca"
+            meta = rmdgallery::gallery_site_config("contest")$gallery$meta,
+            owner = "riccardoporreca",
             repo = "test-utterances",
             site = "https://riccardoporreca.github.io/test-utterances"
           )
