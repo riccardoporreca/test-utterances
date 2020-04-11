@@ -12,6 +12,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
       - name: Setup R
         uses: r-lib/actions/setup-r@master
       - name: Install system dependencies
@@ -31,67 +33,17 @@ jobs:
       - name: Install package dependencies
         run: |
           remotes::install_cran(readRDS("depends.Rds")$package)
+          remotes::install_github("riccardoporreca/rmdgallery@develop")
         shell: Rscript {0}
-      - name: Create new issue
-        id: create_issue
+      - name: Create utterances issues with voting comment
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          owner <- "riccardoporreca"
-          repo <- "test-utterances"
-          committed_files <- gh::gh(
-            "/repos/:owner/:repo/commits/:sha",
-            sha = Sys.getenv("GITHUB_SHA"),
-            owner = owner, repo = repo
-          )$files
-          str(committed_files, max.level = 2)
-          new_meta_files <- committed_files[
-            sapply(committed_files, function(file) {
-              file$status == "added" && dirname(file$filename) == "contest/contributions"
-            })]
-          stopifnot(length(new_meta_files) <= 1L)
-          str(new_meta_files)
-          if (length(new_meta_files) == 1L) {
-            file <- new_meta_files[[1L]]
-            new_issue <- {
-              meta <- yaml::yaml.load(rawToChar(curl::curl_fetch_memory(file$raw_url)$content))
-              name <- tools::file_path_sans_ext(basename(file$filename))
-              title <- sprintf("%s/%s", repo, name)
-              content <- paste0(
-                sprintf("# %s", meta$title), "\n", "\n",
-                sprintf("https://%s.github.io/%s/%s.html", tolower(owner), repo, name)
-              )
-              list(
-                title = title,
-                body = content,
-                labels = list(":+1:")
-              )
-            }
-            str(new_issue)
-            created <- gh::gh(
-              "POST /repos/:owner/:repo/issues",
-              owner = "riccardoporreca", repo = "test-utterances",
-              title = new_issue$title,
-              body = new_issue$body,
-              labels = new_issue$labels
-            )
-            str(created)
-            cat(created$number, file = "issue")
-          } else {
-            cat(-1, file = "issue")
-          }
+          source("_tools/utterances-issues.R")
+          create_utterances_issues(
+            meta = rmdgallery::gallery_site_config("contest")$gallery$meta
+            owner = "riccardoporreca"
+            repo = "test-utterances",
+            site = "https://riccardoporreca.github.io/test-utterances"
+          )
         shell: Rscript {0}
-      - name: Issue nr
-        id: issue_nr
-        run: echo "##[set-output name=issue;]$(cat issue)"
-      - name: Test output
-        run: echo ${{ steps.issue_nr.outputs.issue }}
-      - name: Initial voting comment
-        if: steps.issue_nr.outputs.issue > 0
-        uses: peter-evans/create-or-update-comment@v1
-        with:
-          issue-number: ${{ steps.issue_nr.outputs.issue }}
-          body: |
-            Vote for this contribution by giving it a :+1:!
-            _Please avoid using comments or other reactions_
-          reaction-type: '+1'
