@@ -1,6 +1,10 @@
 YAML = require("yaml")
 
-module.exports.endpoint = function(req, res) {
+exports.test = function() {
+  return "test";
+}
+
+exports.endpoint = function(req, res) {
   const pageName = req.url.substr(1);
   res.setHeader("Content-Type", "application/json");
   const request = require("request");
