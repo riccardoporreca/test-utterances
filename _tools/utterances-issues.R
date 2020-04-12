@@ -1,4 +1,9 @@
-create_utterances_issues <- function(meta, owner, repo, site) {
+# Create utterances issues for the gallery pages based on their `meta`data.
+# Issues are created for gallery pages of the given `site` URL, and feature an
+# optional initial `comment` with a `reaction`
+create_utterances_issues <- function(meta, owner, repo,
+                                     site = sprintf("https://%s.github.io/%s", owner, repo),
+                                     comment = NULL, reaction = NULL) {
   # utils ----
   gh <- function(subpath, ..., method = "GET") {
     gh::gh(
@@ -28,25 +33,25 @@ create_utterances_issues <- function(meta, owner, repo, site) {
       labels = list(":+1:")
     )
     message("> issue #", issue$number)
-    # create the initial standard
-    comment <- gh(
-      method = "POST",
-      sprintf("issues/%d/comments", issue$number),
-      body = paste0(
-        "Vote for this contribution by giving it a :+1:!\n",
-        "_Please avoid using comments or other reactions_"
+    if (!is.null(comment)) {
+      # create an initial standard comment
+      comment <-   gh(
+        method = "POST",
+        sprintf("issues/%d/comments", issue$number),
+        body = paste(comment, collapse = "\n")
       )
-    )
-    message("> comment id: ", comment$id)
-    # create the initial like
-    reaction <- gh(
-      method = "POST",
-      sprintf("issues/comments/%d/reactions", comment$id),
-      content = "+1",
-      .accept = "application/vnd.github.squirrel-girl-preview+json" # Beta feature!
-    )
-    message("> reaction id: ", reaction$id)
-
+      message("> comment id: ", comment$id)
+      if (!is.null(reaction)) {
+        # create an initial comment reaction
+        reaction <- gh(
+          method = "POST",
+          sprintf("issues/comments/%d/reactions", comment$id),
+          content = reaction,
+          .accept = "application/vnd.github.squirrel-girl-preview+json" # Beta feature!
+        )
+        message("> reaction id: ", reaction$id)
+      }
+    }
     invisible(list(
       issue = issue,
       comment = comment,
