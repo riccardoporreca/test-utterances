@@ -40,7 +40,7 @@ create_utterances_issues <- function(meta, owner, repo,
       sprintf("issues/%d", issue$number),
       state = "closed"
     )
-    message("> issue #", issue$number, " is ", issue$status)
+    message("> issue #", issue$number, " is ", issue$state)
     if (!is.null(comment)) {
       # create an initial standard comment
       comment <-   gh(
