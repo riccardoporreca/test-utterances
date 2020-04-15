@@ -32,14 +32,15 @@ create_utterances_issues <- function(meta, owner, repo,
       body = issue_body(page_name),
       labels = list(":+1:")
     )
-    # close the issue so that it does not show up in the list 
+    message("> issue #", issue$number)
+    # close the issue so that it does not show up in the list
     # (comments / reactions are still enabled for closed issues)
     issue <- gh(
       method = "PATCH",
       sprintf("issues/%d", issue$number),
       state = "closed"
     )
-    message("> issue #", issue$number)
+    message("> issue #", issue$number, " is ", issue$status)
     if (!is.null(comment)) {
       # create an initial standard comment
       comment <-   gh(
