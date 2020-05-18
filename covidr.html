@@ -32,6 +32,7 @@ WebFont.load({
 	}
 });
 </script>
+<script src="assets/main.js"></script>
 
 
 
@@ -374,12 +375,35 @@ Welcome to the CovidR Contest!
 <p>The pre-conference virtual event will take place on <strong>May 29th</strong>, when selected participants will be invited to present their work and the contest winners will be announced and awarded with e-prizes. Contributions can be <strong><a href="submit.html">submitted</a> until May 22nd</strong> and are made available in this website, where the wider community is invited to provide feedback. The winner(s) will be announced during the conference pre-event on <strong>May 29th</strong>. Attendance to the event is subject to a <a href="https://www.eventbrite.it/e/covidr-erum-2020-pre-conference-event-tickets-104133026686"><strong>free registration</strong></a>, closing on <strong>May 22nd</strong>.</p>
 <p>The <strong>current submissions</strong> feature the contributions below. The corresponding gallery pages allow the wider community to browse through and <strong>like contributions</strong>.</p>
 <div id="contributions">
+<div class="modal fade" id="vote-modal" tabindex="-1" role="dialog" aria-labelledby="vote-modal-title">
+<div class="modal-dialog" role="document">
+<div class="modal-content">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+<span aria-hidden="true">&times;</span>
+</button>
+<h4 class="modal-title" id="vote-modal-title">
+<div id="vote-modal-title">Vote for ""</div>
+</h4>
+</div>
+<div class="modal-body">
+<p>
+Like this contribution to see it presented and awarded at the e-Rum2020
+<a href="about.html">CovidR contest</a>
+pre-conference event
+</p>
+<div id="vote-modal-utterances"></div>
+</div>
+<div class="modal-footer"></div>
+</div>
+</div>
+</div>
 <div class="panel">
 <div class="btns">
 <button class="btn btn-badge collapsed" data-parent="#contributions" data-toggle="collapse" data-target="#details-hahn-covid-shinyline">
 <span class="fa fa-minus"></span>
 </button>
-<button title="Vote for this contribution" class="btn btn-badge" data-toggle="modal" data-target="#like-hahn-covid-shinyline">
+<button title="Vote for this contribution" class="btn btn-badge" onclick="set_vote_modal(&quot;Vote for \&quot;The 2019-2020 Coronavirus Pandemic - A Timeline\&quot;&quot;, &quot;Milano-R/erum2020-covidr-contest&quot;, &quot;erum2020-covidr-contest&quot;, &quot;hahn-covid-shinyline&quot;)" data-toggle="modal" data-target="#vote-modal">
 <span class="fa fa-thumbs-up"></span>
 </button>
 </div>
@@ -401,34 +425,13 @@ The app uses data from Johns Hopkins University.
 <a href="https://github.com/nicoFhahn/covid_shiny" target="_blank">https://github.com/nicoFhahn/covid_shiny</a>
 </div>
 </div>
-<div class="modal fade" id="like-hahn-covid-shinyline" tabindex="-1" role="dialog" aria-labelledby="like-hahn-covid-shinyline-title">
-<div class="modal-dialog" role="document">
-<div class="modal-content">
-<div class="modal-header">
-<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-<span aria-hidden="true">&times;</span>
-</button>
-<h4 class="modal-title" id="like-hahn-covid-shinyline-title">Vote for "The 2019-2020 Coronavirus Pandemic - A Timeline"</h4>
-</div>
-<div class="modal-body">
-<p>
-Like this contribution to see it presented and awarded at the e-Rum2020
-<a href="about.html">CovidR contest</a>
-pre-conference event
-</p>
-<script src="https://utteranc.es/client.js" repo="Milano-R/erum2020-covidr-contest" issue-term="erum2020-covidr-contest/hahn-covid-shinyline" label=":+1:" theme="github-light" crossorigin="anonymous" async></script>
-</div>
-<div class="modal-footer"></div>
-</div>
-</div>
-</div>
 </div>
 <div class="panel">
 <div class="btns">
 <button class="btn btn-badge collapsed" data-parent="#contributions" data-toggle="collapse" data-target="#details-laurinec-CoronaDash">
 <span class="fa fa-minus"></span>
 </button>
-<button title="Vote for this contribution" class="btn btn-badge" data-toggle="modal" data-target="#like-laurinec-CoronaDash">
+<button title="Vote for this contribution" class="btn btn-badge" onclick="set_vote_modal(&quot;Vote for \&quot;CoronaDash - Clustering-Analytical Tool for Comparing Countries&#39; COVID-19 Trends\&quot;&quot;, &quot;Milano-R/erum2020-covidr-contest&quot;, &quot;erum2020-covidr-contest&quot;, &quot;laurinec-CoronaDash&quot;)" data-toggle="modal" data-target="#vote-modal">
 <span class="fa fa-thumbs-up"></span>
 </button>
 </div>
@@ -451,34 +454,13 @@ The data (updated daily) are coming from GitHub repositories of CSSEGISandData, 
 <a href="https://github.com/PetoLau/CoronaDash" target="_blank">https://github.com/PetoLau/CoronaDash</a>
 </div>
 </div>
-<div class="modal fade" id="like-laurinec-CoronaDash" tabindex="-1" role="dialog" aria-labelledby="like-laurinec-CoronaDash-title">
-<div class="modal-dialog" role="document">
-<div class="modal-content">
-<div class="modal-header">
-<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-<span aria-hidden="true">&times;</span>
-</button>
-<h4 class="modal-title" id="like-laurinec-CoronaDash-title">Vote for "CoronaDash - Clustering-Analytical Tool for Comparing Countries' COVID-19 Trends"</h4>
-</div>
-<div class="modal-body">
-<p>
-Like this contribution to see it presented and awarded at the e-Rum2020
-<a href="about.html">CovidR contest</a>
-pre-conference event
-</p>
-<script src="https://utteranc.es/client.js" repo="Milano-R/erum2020-covidr-contest" issue-term="erum2020-covidr-contest/laurinec-CoronaDash" label=":+1:" theme="github-light" crossorigin="anonymous" async></script>
-</div>
-<div class="modal-footer"></div>
-</div>
-</div>
-</div>
 </div>
 <div class="panel">
 <div class="btns">
 <button class="btn btn-badge collapsed" data-parent="#contributions" data-toggle="collapse" data-target="#details-phillips-et-al-nCovForecast">
 <span class="fa fa-minus"></span>
 </button>
-<button title="Vote for this contribution" class="btn btn-badge" data-toggle="modal" data-target="#like-phillips-et-al-nCovForecast">
+<button title="Vote for this contribution" class="btn btn-badge" onclick="set_vote_modal(&quot;Vote for \&quot;The Ten-Day Coronavirus Forecast\&quot;&quot;, &quot;Milano-R/erum2020-covidr-contest&quot;, &quot;erum2020-covidr-contest&quot;, &quot;phillips-et-al-nCovForecast&quot;)" data-toggle="modal" data-target="#vote-modal">
 <span class="fa fa-thumbs-up"></span>
 </button>
 </div>
@@ -502,34 +484,13 @@ The data are updated daily, and come from datasets collated by teams at John Hop
 <a href="https://github.com/benflips/nCovForecast" target="_blank">https://github.com/benflips/nCovForecast</a>
 </div>
 </div>
-<div class="modal fade" id="like-phillips-et-al-nCovForecast" tabindex="-1" role="dialog" aria-labelledby="like-phillips-et-al-nCovForecast-title">
-<div class="modal-dialog" role="document">
-<div class="modal-content">
-<div class="modal-header">
-<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-<span aria-hidden="true">&times;</span>
-</button>
-<h4 class="modal-title" id="like-phillips-et-al-nCovForecast-title">Vote for "The Ten-Day Coronavirus Forecast"</h4>
-</div>
-<div class="modal-body">
-<p>
-Like this contribution to see it presented and awarded at the e-Rum2020
-<a href="about.html">CovidR contest</a>
-pre-conference event
-</p>
-<script src="https://utteranc.es/client.js" repo="Milano-R/erum2020-covidr-contest" issue-term="erum2020-covidr-contest/phillips-et-al-nCovForecast" label=":+1:" theme="github-light" crossorigin="anonymous" async></script>
-</div>
-<div class="modal-footer"></div>
-</div>
-</div>
-</div>
 </div>
 <div class="panel">
 <div class="btns">
 <button class="btn btn-badge collapsed" data-parent="#contributions" data-toggle="collapse" data-target="#details-john-coene">
 <span class="fa fa-minus"></span>
 </button>
-<button title="Vote for this contribution" class="btn btn-badge" data-toggle="modal" data-target="#like-john-coene">
+<button title="Vote for this contribution" class="btn btn-badge" onclick="set_vote_modal(&quot;Vote for \&quot;A Coronavirus Tracker, API &amp; Crawler\&quot;&quot;, &quot;Milano-R/erum2020-covidr-contest&quot;, &quot;erum2020-covidr-contest&quot;, &quot;john-coene&quot;)" data-toggle="modal" data-target="#vote-modal">
 <span class="fa fa-thumbs-up"></span>
 </button>
 </div>
@@ -550,34 +511,13 @@ a mobile-first application; the app, the API and its data crawler are both open-
 <a href="https://github.com/JohnCoene/coronavirus" target="_blank">https://github.com/JohnCoene/coronavirus</a>
 </div>
 </div>
-<div class="modal fade" id="like-john-coene" tabindex="-1" role="dialog" aria-labelledby="like-john-coene-title">
-<div class="modal-dialog" role="document">
-<div class="modal-content">
-<div class="modal-header">
-<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-<span aria-hidden="true">&times;</span>
-</button>
-<h4 class="modal-title" id="like-john-coene-title">Vote for "A Coronavirus Tracker, API &amp; Crawler"</h4>
-</div>
-<div class="modal-body">
-<p>
-Like this contribution to see it presented and awarded at the e-Rum2020
-<a href="about.html">CovidR contest</a>
-pre-conference event
-</p>
-<script src="https://utteranc.es/client.js" repo="Milano-R/erum2020-covidr-contest" issue-term="erum2020-covidr-contest/john-coene" label=":+1:" theme="github-light" crossorigin="anonymous" async></script>
-</div>
-<div class="modal-footer"></div>
-</div>
-</div>
-</div>
 </div>
 <div class="panel">
 <div class="btns">
 <button class="btn btn-badge collapsed" data-parent="#contributions" data-toggle="collapse" data-target="#details-danese-covid19-understanding">
 <span class="fa fa-minus"></span>
 </button>
-<button title="Vote for this contribution" class="btn btn-badge" data-toggle="modal" data-target="#like-danese-covid19-understanding">
+<button title="Vote for this contribution" class="btn btn-badge" onclick="set_vote_modal(&quot;Vote for \&quot;Understanding COVID-19 through Italian Excess Deaths Analysis\&quot;&quot;, &quot;Milano-R/erum2020-covidr-contest&quot;, &quot;erum2020-covidr-contest&quot;, &quot;danese-covid19-understanding&quot;)" data-toggle="modal" data-target="#vote-modal">
 <span class="fa fa-thumbs-up"></span>
 </button>
 </div>
@@ -599,34 +539,13 @@ I focus on excess deaths with respect to previous years and answer many question
 <a href="https://github.com/albedan/covidr-excess-deaths-analysis" target="_blank">https://github.com/albedan/covidr-excess-deaths-analysis</a>
 </div>
 </div>
-<div class="modal fade" id="like-danese-covid19-understanding" tabindex="-1" role="dialog" aria-labelledby="like-danese-covid19-understanding-title">
-<div class="modal-dialog" role="document">
-<div class="modal-content">
-<div class="modal-header">
-<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-<span aria-hidden="true">&times;</span>
-</button>
-<h4 class="modal-title" id="like-danese-covid19-understanding-title">Vote for "Understanding COVID-19 through Italian Excess Deaths Analysis"</h4>
-</div>
-<div class="modal-body">
-<p>
-Like this contribution to see it presented and awarded at the e-Rum2020
-<a href="about.html">CovidR contest</a>
-pre-conference event
-</p>
-<script src="https://utteranc.es/client.js" repo="Milano-R/erum2020-covidr-contest" issue-term="erum2020-covidr-contest/danese-covid19-understanding" label=":+1:" theme="github-light" crossorigin="anonymous" async></script>
-</div>
-<div class="modal-footer"></div>
-</div>
-</div>
-</div>
 </div>
 <div class="panel">
 <div class="btns">
 <button class="btn btn-badge collapsed" data-parent="#contributions" data-toggle="collapse" data-target="#details-sokil-papers-covid19">
 <span class="fa fa-minus"></span>
 </button>
-<button title="Vote for this contribution" class="btn btn-badge" data-toggle="modal" data-target="#like-sokil-papers-covid19">
+<button title="Vote for this contribution" class="btn btn-badge" onclick="set_vote_modal(&quot;Vote for \&quot;Scientific Papers Related to the COVID-19 Virus\&quot;&quot;, &quot;Milano-R/erum2020-covidr-contest&quot;, &quot;erum2020-covidr-contest&quot;, &quot;sokil-papers-covid19&quot;)" data-toggle="modal" data-target="#vote-modal">
 <span class="fa fa-thumbs-up"></span>
 </button>
 </div>
@@ -647,34 +566,13 @@ This app allows to analyze the scientific production by country, the scientific 
 <a href="https://github.com/juansokil/Covid-19" target="_blank">https://github.com/juansokil/Covid-19</a>
 </div>
 </div>
-<div class="modal fade" id="like-sokil-papers-covid19" tabindex="-1" role="dialog" aria-labelledby="like-sokil-papers-covid19-title">
-<div class="modal-dialog" role="document">
-<div class="modal-content">
-<div class="modal-header">
-<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-<span aria-hidden="true">&times;</span>
-</button>
-<h4 class="modal-title" id="like-sokil-papers-covid19-title">Vote for "Scientific Papers Related to the COVID-19 Virus"</h4>
-</div>
-<div class="modal-body">
-<p>
-Like this contribution to see it presented and awarded at the e-Rum2020
-<a href="about.html">CovidR contest</a>
-pre-conference event
-</p>
-<script src="https://utteranc.es/client.js" repo="Milano-R/erum2020-covidr-contest" issue-term="erum2020-covidr-contest/sokil-papers-covid19" label=":+1:" theme="github-light" crossorigin="anonymous" async></script>
-</div>
-<div class="modal-footer"></div>
-</div>
-</div>
-</div>
 </div>
 <div class="panel">
 <div class="btns">
 <button class="btn btn-badge collapsed" data-parent="#contributions" data-toggle="collapse" data-target="#details-bulletin-board-japan">
 <span class="fa fa-minus"></span>
 </button>
-<button title="Vote for this contribution" class="btn btn-badge" data-toggle="modal" data-target="#like-bulletin-board-japan">
+<button title="Vote for this contribution" class="btn btn-badge" onclick="set_vote_modal(&quot;Vote for \&quot;Interactive Dashboard for Real-Time Recording of COVID-19 Outbreak in Japan\&quot;&quot;, &quot;Milano-R/erum2020-covidr-contest&quot;, &quot;erum2020-covidr-contest&quot;, &quot;bulletin-board-japan&quot;)" data-toggle="modal" data-target="#vote-modal">
 <span class="fa fa-thumbs-up"></span>
 </button>
 </div>
@@ -699,34 +597,13 @@ charts such as cluster network, new confirmed case in log scale for users&#39; r
 <a href="https://github.com/swsoyee/2019-ncov-japan" target="_blank">https://github.com/swsoyee/2019-ncov-japan</a>
 </div>
 </div>
-<div class="modal fade" id="like-bulletin-board-japan" tabindex="-1" role="dialog" aria-labelledby="like-bulletin-board-japan-title">
-<div class="modal-dialog" role="document">
-<div class="modal-content">
-<div class="modal-header">
-<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-<span aria-hidden="true">&times;</span>
-</button>
-<h4 class="modal-title" id="like-bulletin-board-japan-title">Vote for "Interactive Dashboard for Real-Time Recording of COVID-19 Outbreak in Japan"</h4>
-</div>
-<div class="modal-body">
-<p>
-Like this contribution to see it presented and awarded at the e-Rum2020
-<a href="about.html">CovidR contest</a>
-pre-conference event
-</p>
-<script src="https://utteranc.es/client.js" repo="Milano-R/erum2020-covidr-contest" issue-term="erum2020-covidr-contest/bulletin-board-japan" label=":+1:" theme="github-light" crossorigin="anonymous" async></script>
-</div>
-<div class="modal-footer"></div>
-</div>
-</div>
-</div>
 </div>
 <div class="panel">
 <div class="btns">
 <button class="btn btn-badge collapsed" data-parent="#contributions" data-toggle="collapse" data-target="#details-tim-churches-COVID-19-blog-posts">
 <span class="fa fa-minus"></span>
 </button>
-<button title="Vote for this contribution" class="btn btn-badge" data-toggle="modal" data-target="#like-tim-churches-COVID-19-blog-posts">
+<button title="Vote for this contribution" class="btn btn-badge" onclick="set_vote_modal(&quot;Vote for \&quot;COVID-19 and R Blog Series\&quot;&quot;, &quot;Milano-R/erum2020-covidr-contest&quot;, &quot;erum2020-covidr-contest&quot;, &quot;tim-churches-COVID-19-blog-posts&quot;)" data-toggle="modal" data-target="#vote-modal">
 <span class="fa fa-thumbs-up"></span>
 </button>
 </div>
@@ -751,34 +628,13 @@ public health interventions in a population.
 <a href="https://github.com/timchurches/blog" target="_blank">https://github.com/timchurches/blog</a>
 </div>
 </div>
-<div class="modal fade" id="like-tim-churches-COVID-19-blog-posts" tabindex="-1" role="dialog" aria-labelledby="like-tim-churches-COVID-19-blog-posts-title">
-<div class="modal-dialog" role="document">
-<div class="modal-content">
-<div class="modal-header">
-<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-<span aria-hidden="true">&times;</span>
-</button>
-<h4 class="modal-title" id="like-tim-churches-COVID-19-blog-posts-title">Vote for "COVID-19 and R Blog Series"</h4>
-</div>
-<div class="modal-body">
-<p>
-Like this contribution to see it presented and awarded at the e-Rum2020
-<a href="about.html">CovidR contest</a>
-pre-conference event
-</p>
-<script src="https://utteranc.es/client.js" repo="Milano-R/erum2020-covidr-contest" issue-term="erum2020-covidr-contest/tim-churches-COVID-19-blog-posts" label=":+1:" theme="github-light" crossorigin="anonymous" async></script>
-</div>
-<div class="modal-footer"></div>
-</div>
-</div>
-</div>
 </div>
 <div class="panel">
 <div class="btns">
 <button class="btn btn-badge collapsed" data-parent="#contributions" data-toggle="collapse" data-target="#details-schoenenberger-globalCovidDashboard">
 <span class="fa fa-minus"></span>
 </button>
-<button title="Vote for this contribution" class="btn btn-badge" data-toggle="modal" data-target="#like-schoenenberger-globalCovidDashboard">
+<button title="Vote for this contribution" class="btn btn-badge" onclick="set_vote_modal(&quot;Vote for \&quot;COVID-19 Global Cases - Open Source Dashboard\&quot;&quot;, &quot;Milano-R/erum2020-covidr-contest&quot;, &quot;erum2020-covidr-contest&quot;, &quot;schoenenberger-globalCovidDashboard&quot;)" data-toggle="modal" data-target="#vote-modal">
 <span class="fa fa-thumbs-up"></span>
 </button>
 </div>
@@ -800,34 +656,13 @@ and displayed in a map, summary tables, key figures and plots.
 <a href="https://github.com/chschoenenberger/covid19_dashboard" target="_blank">https://github.com/chschoenenberger/covid19_dashboard</a>
 </div>
 </div>
-<div class="modal fade" id="like-schoenenberger-globalCovidDashboard" tabindex="-1" role="dialog" aria-labelledby="like-schoenenberger-globalCovidDashboard-title">
-<div class="modal-dialog" role="document">
-<div class="modal-content">
-<div class="modal-header">
-<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-<span aria-hidden="true">&times;</span>
-</button>
-<h4 class="modal-title" id="like-schoenenberger-globalCovidDashboard-title">Vote for "COVID-19 Global Cases - Open Source Dashboard"</h4>
-</div>
-<div class="modal-body">
-<p>
-Like this contribution to see it presented and awarded at the e-Rum2020
-<a href="about.html">CovidR contest</a>
-pre-conference event
-</p>
-<script src="https://utteranc.es/client.js" repo="Milano-R/erum2020-covidr-contest" issue-term="erum2020-covidr-contest/schoenenberger-globalCovidDashboard" label=":+1:" theme="github-light" crossorigin="anonymous" async></script>
-</div>
-<div class="modal-footer"></div>
-</div>
-</div>
-</div>
 </div>
 <div class="panel">
 <div class="btns">
 <button class="btn btn-badge collapsed" data-parent="#contributions" data-toggle="collapse" data-target="#details-covid19-sir-model">
 <span class="fa fa-minus"></span>
 </button>
-<button title="Vote for this contribution" class="btn btn-badge" data-toggle="modal" data-target="#like-covid19-sir-model">
+<button title="Vote for this contribution" class="btn btn-badge" onclick="set_vote_modal(&quot;Vote for \&quot;COVID-19 Time-Dependent SIR Model\&quot;&quot;, &quot;Milano-R/erum2020-covidr-contest&quot;, &quot;erum2020-covidr-contest&quot;, &quot;covid19-sir-model&quot;)" data-toggle="modal" data-target="#vote-modal">
 <span class="fa fa-thumbs-up"></span>
 </button>
 </div>
@@ -851,34 +686,13 @@ of the Italian Government through the COVID-19 repository.
 <a href="https://github.com/hypermynds/covid19" target="_blank">https://github.com/hypermynds/covid19</a>
 </div>
 </div>
-<div class="modal fade" id="like-covid19-sir-model" tabindex="-1" role="dialog" aria-labelledby="like-covid19-sir-model-title">
-<div class="modal-dialog" role="document">
-<div class="modal-content">
-<div class="modal-header">
-<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-<span aria-hidden="true">&times;</span>
-</button>
-<h4 class="modal-title" id="like-covid19-sir-model-title">Vote for "COVID-19 Time-Dependent SIR Model"</h4>
-</div>
-<div class="modal-body">
-<p>
-Like this contribution to see it presented and awarded at the e-Rum2020
-<a href="about.html">CovidR contest</a>
-pre-conference event
-</p>
-<script src="https://utteranc.es/client.js" repo="Milano-R/erum2020-covidr-contest" issue-term="erum2020-covidr-contest/covid19-sir-model" label=":+1:" theme="github-light" crossorigin="anonymous" async></script>
-</div>
-<div class="modal-footer"></div>
-</div>
-</div>
-</div>
 </div>
 <div class="panel">
 <div class="btns">
 <button class="btn btn-badge collapsed" data-parent="#contributions" data-toggle="collapse" data-target="#details-malishev-covid19">
 <span class="fa fa-minus"></span>
 </button>
-<button title="Vote for this contribution" class="btn btn-badge" data-toggle="modal" data-target="#like-malishev-covid19">
+<button title="Vote for this contribution" class="btn btn-badge" onclick="set_vote_modal(&quot;Vote for \&quot;Real-time Interactive Global Distribution of 2019-nCov: Cases, Deaths, and Cases in Last 15 Days\&quot;&quot;, &quot;Milano-R/erum2020-covidr-contest&quot;, &quot;erum2020-covidr-contest&quot;, &quot;malishev-covid19&quot;)" data-toggle="modal" data-target="#vote-modal">
 <span class="fa fa-thumbs-up"></span>
 </button>
 </div>
@@ -899,34 +713,13 @@ Data are for the country level showing cases, deaths, and cases in last 15 days,
 <a href="https://github.com/darwinanddavis/worldmaps/blob/gh-pages/docs/coronavirus_.R" target="_blank">https://github.com/darwinanddavis/worldmaps/blob/gh-pages/docs/coronavirus_.R</a>
 </div>
 </div>
-<div class="modal fade" id="like-malishev-covid19" tabindex="-1" role="dialog" aria-labelledby="like-malishev-covid19-title">
-<div class="modal-dialog" role="document">
-<div class="modal-content">
-<div class="modal-header">
-<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-<span aria-hidden="true">&times;</span>
-</button>
-<h4 class="modal-title" id="like-malishev-covid19-title">Vote for "Real-time Interactive Global Distribution of 2019-nCov: Cases, Deaths, and Cases in Last 15 Days"</h4>
-</div>
-<div class="modal-body">
-<p>
-Like this contribution to see it presented and awarded at the e-Rum2020
-<a href="about.html">CovidR contest</a>
-pre-conference event
-</p>
-<script src="https://utteranc.es/client.js" repo="Milano-R/erum2020-covidr-contest" issue-term="erum2020-covidr-contest/malishev-covid19" label=":+1:" theme="github-light" crossorigin="anonymous" async></script>
-</div>
-<div class="modal-footer"></div>
-</div>
-</div>
-</div>
 </div>
 <div class="panel">
 <div class="btns">
 <button class="btn btn-badge collapsed" data-parent="#contributions" data-toggle="collapse" data-target="#details-rako-CoDaP">
 <span class="fa fa-minus"></span>
 </button>
-<button title="Vote for this contribution" class="btn btn-badge" data-toggle="modal" data-target="#like-rako-CoDaP">
+<button title="Vote for this contribution" class="btn btn-badge" onclick="set_vote_modal(&quot;Vote for \&quot;Covid19 Data and Perception Application (CoDaP)\&quot;&quot;, &quot;Milano-R/erum2020-covidr-contest&quot;, &quot;erum2020-covidr-contest&quot;, &quot;rako-CoDaP&quot;)" data-toggle="modal" data-target="#vote-modal">
 <span class="fa fa-thumbs-up"></span>
 </button>
 </div>
@@ -948,34 +741,13 @@ European Centre for Disease Prevention and Control (<a href="https://www.ecdc.eu
 <a href="https://github.com/SabinaRa/CoDaP" target="_blank">https://github.com/SabinaRa/CoDaP</a>
 </div>
 </div>
-<div class="modal fade" id="like-rako-CoDaP" tabindex="-1" role="dialog" aria-labelledby="like-rako-CoDaP-title">
-<div class="modal-dialog" role="document">
-<div class="modal-content">
-<div class="modal-header">
-<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-<span aria-hidden="true">&times;</span>
-</button>
-<h4 class="modal-title" id="like-rako-CoDaP-title">Vote for "Covid19 Data and Perception Application (CoDaP)"</h4>
-</div>
-<div class="modal-body">
-<p>
-Like this contribution to see it presented and awarded at the e-Rum2020
-<a href="about.html">CovidR contest</a>
-pre-conference event
-</p>
-<script src="https://utteranc.es/client.js" repo="Milano-R/erum2020-covidr-contest" issue-term="erum2020-covidr-contest/rako-CoDaP" label=":+1:" theme="github-light" crossorigin="anonymous" async></script>
-</div>
-<div class="modal-footer"></div>
-</div>
-</div>
-</div>
 </div>
 <div class="panel">
 <div class="btns">
 <button class="btn btn-badge collapsed" data-parent="#contributions" data-toggle="collapse" data-target="#details-vitalini-covid19">
 <span class="fa fa-minus"></span>
 </button>
-<button title="Vote for this contribution" class="btn btn-badge" data-toggle="modal" data-target="#like-vitalini-covid19">
+<button title="Vote for this contribution" class="btn btn-badge" onclick="set_vote_modal(&quot;Vote for \&quot;Covid19 Shiny App\&quot;&quot;, &quot;Milano-R/erum2020-covidr-contest&quot;, &quot;erum2020-covidr-contest&quot;, &quot;vitalini-covid19&quot;)" data-toggle="modal" data-target="#vote-modal">
 <span class="fa fa-thumbs-up"></span>
 </button>
 </div>
@@ -998,34 +770,13 @@ and Worldometer data afterwards.
 <a href="https://github.com/miraisolutions/Covid19" target="_blank">https://github.com/miraisolutions/Covid19</a>
 </div>
 </div>
-<div class="modal fade" id="like-vitalini-covid19" tabindex="-1" role="dialog" aria-labelledby="like-vitalini-covid19-title">
-<div class="modal-dialog" role="document">
-<div class="modal-content">
-<div class="modal-header">
-<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-<span aria-hidden="true">&times;</span>
-</button>
-<h4 class="modal-title" id="like-vitalini-covid19-title">Vote for "Covid19 Shiny App"</h4>
-</div>
-<div class="modal-body">
-<p>
-Like this contribution to see it presented and awarded at the e-Rum2020
-<a href="about.html">CovidR contest</a>
-pre-conference event
-</p>
-<script src="https://utteranc.es/client.js" repo="Milano-R/erum2020-covidr-contest" issue-term="erum2020-covidr-contest/vitalini-covid19" label=":+1:" theme="github-light" crossorigin="anonymous" async></script>
-</div>
-<div class="modal-footer"></div>
-</div>
-</div>
-</div>
 </div>
 <div class="panel">
 <div class="btns">
 <button class="btn btn-badge collapsed" data-parent="#contributions" data-toggle="collapse" data-target="#details-author-contribution-example">
 <span class="fa fa-minus"></span>
 </button>
-<button title="Vote for this contribution" class="btn btn-badge" data-toggle="modal" data-target="#like-author-contribution-example">
+<button title="Vote for this contribution" class="btn btn-badge" onclick="set_vote_modal(&quot;Vote for \&quot;CovidR Contribution Example\&quot;&quot;, &quot;Milano-R/erum2020-covidr-contest&quot;, &quot;erum2020-covidr-contest&quot;, &quot;author-contribution-example&quot;)" data-toggle="modal" data-target="#vote-modal">
 <span class="fa fa-thumbs-up"></span>
 </button>
 </div>
@@ -1046,27 +797,6 @@ The text can be broken across multiple lines, each indented with two spaces.
 <em>Repository</em>
 &mdash;
 <a href="https://github.com/Milano-R/erum2020-covidr-contest" target="_blank">https://github.com/Milano-R/erum2020-covidr-contest</a>
-</div>
-</div>
-<div class="modal fade" id="like-author-contribution-example" tabindex="-1" role="dialog" aria-labelledby="like-author-contribution-example-title">
-<div class="modal-dialog" role="document">
-<div class="modal-content">
-<div class="modal-header">
-<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-<span aria-hidden="true">&times;</span>
-</button>
-<h4 class="modal-title" id="like-author-contribution-example-title">Vote for "CovidR Contribution Example"</h4>
-</div>
-<div class="modal-body">
-<p>
-Like this contribution to see it presented and awarded at the e-Rum2020
-<a href="about.html">CovidR contest</a>
-pre-conference event
-</p>
-<script src="https://utteranc.es/client.js" repo="Milano-R/erum2020-covidr-contest" issue-term="erum2020-covidr-contest/author-contribution-example" label=":+1:" theme="github-light" crossorigin="anonymous" async></script>
-</div>
-<div class="modal-footer"></div>
-</div>
 </div>
 </div>
 </div>
