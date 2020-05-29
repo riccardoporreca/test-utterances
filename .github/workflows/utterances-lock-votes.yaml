@@ -1,14 +1,14 @@
-name: Cleanup comments
+name: Lock and retrieve votes
 
 on:
 
   repository_dispatch:
     # trigger from R via:
-    # gh::gh("POST /repos/:owner/:repo/dispatches", owner = "Milano-R", repo = "erum2020-covidr-contest", event_type = "cleanup-utterances")
+    # gh::gh("POST /repos/:owner/:repo/dispatches", owner = "riccardoporreca", repo = "test-utterances", event_type = "lock-utterances-votes")
     types: [lock-utterances-votes]
 
 jobs:
-  cleanup:
+  lock:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
@@ -24,7 +24,7 @@ jobs:
           saveRDS(remotes::package_deps(c("gh", "yaml")), "depends.Rds", version = 2)
         shell: Rscript {0}
       - name: Cache R packages
-        uses: actions/cache@v1
+        uses: actions/cache@master
         with:
           path: ${{ env.R_LIBS_USER }}
           key: ${{ runner.os }}-r-${{ hashFiles('depends.Rds') }}
@@ -40,8 +40,8 @@ jobs:
         run: |
           source("contest/_tools/utterances-issues.R")
           votes <- lock_utterances_issues(
-            owner = "Milano-R",
-            repo = "erum2020-covidr-contest",
+            owner = "riccardoporreca",
+            repo = "test-utterances",
             dry_run = TRUE
           )
           message("Votes from ", length(unique(votes$vote)), " users")
